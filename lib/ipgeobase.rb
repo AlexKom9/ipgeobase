@@ -10,7 +10,7 @@ module Ipgeobase
 
   class << self
     def lookup(ip)
-      result = JSON.parse(Net::HTTP.get URI("http://ip-api.com/json/#{ip}")).transform_keys(&:to_sym)
+      result = JSON.parse(Net::HTTP.get(URI("http://ip-api.com/json/#{ip}"))).transform_keys(&:to_sym)
 
       result.each do |key, value|
         result.define_singleton_method(key) do

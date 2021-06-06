@@ -11,4 +11,4 @@ gem "minitest", "~> 5.0"
 
 gem "rubocop", "~> 1.7"
 
-gem 'addressable'
+gem "addressable"
