@@ -44,7 +44,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  addressable
   ipgeobase!
   minitest (~> 5.0)
   rake (~> 13.0)

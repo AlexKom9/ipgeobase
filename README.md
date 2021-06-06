@@ -1,3 +1,5 @@
+![CI status](https://github.com/alexkom9/ipgeobase/actions/workflows/main.yml/badge.svg)
+
 # Ipgeobase
 
 This is a test gem for getting meta info by IP address.
