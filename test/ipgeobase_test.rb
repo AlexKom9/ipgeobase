@@ -5,27 +5,6 @@ require "webmock/minitest"
 require_relative "test_helper"
 
 class IpgeobaseTest < Minitest::Test
-  def setup
-    @response_xml = %(
-      <query>
-        <status>success</status>
-        <country>United States</country>
-        <countryCode>US</countryCode>
-        <region>VA</region>
-        <regionName>Virginia</regionName>
-        <city>Ashburn</city>
-        <zip>20149</zip>
-        <lat>39.03</lat>
-        <lon>-77.5</lon>
-        <timezone>America/New_York</timezone>
-        <isp>Google LLC</isp>
-        <org>Google Public DNS</org>
-        <as>AS15169 Google LLC</as>
-        <query>8.8.8.8</query>
-      </query>
-    )
-  end
-
   def test_that_it_has_a_version_number
     refute_nil ::Ipgeobase::VERSION
   end
@@ -40,7 +19,7 @@ class IpgeobaseTest < Minitest::Test
         "User-Agent" => "Ruby",
       },
     ).
-      to_return(status: 200, body: @response_xml, headers: {})
+      to_return(status: 200, body: File.read("test/mocks/response.xml"), headers: {})
 
     ip_meta = Ipgeobase.lookup("8.8.8.8")
 
@@ -49,5 +28,6 @@ class IpgeobaseTest < Minitest::Test
     assert_equal ip_meta.country_code, "US"
     assert_equal ip_meta.lat, "39.03"
     assert_equal ip_meta.lon, "-77.5"
+    assert_equal ip_meta.timezone, "America/New_York"
   end
 end
