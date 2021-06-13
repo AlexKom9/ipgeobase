@@ -4,6 +4,7 @@ require_relative "ipgeobase/version"
 require "net/http"
 require "uri"
 require "nokogiri-happymapper"
+
 module Ipgeobase
   class Error < StandardError; end
 
