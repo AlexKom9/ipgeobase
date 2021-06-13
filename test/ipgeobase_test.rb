@@ -10,16 +10,16 @@ class IpgeobaseTest < Minitest::Test
   end
 
   def test_return_meta_info
-    stub_request(:get, "http://ip-api.com/xml/8.8.8.8").
-      with(
-      headers: {
-        "Accept" => "*/*",
-        "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
-        "Host" => "ip-api.com",
-        "User-Agent" => "Ruby",
-      },
-    ).
-      to_return(status: 200, body: File.read("test/mocks/response.xml"), headers: {})
+    stub_request(:get, "http://ip-api.com/xml/8.8.8.8")
+      .with(
+        headers: {
+          "Accept" => "*/*",
+          "Accept-Encoding" => "gzip;q=1.0,deflate;q=0.6,identity;q=0.3",
+          "Host" => "ip-api.com",
+          "User-Agent" => "Ruby"
+        }
+      )
+      .to_return(status: 200, body: File.read("test/mocks/response.xml"), headers: {})
 
     ip_meta = Ipgeobase.lookup("8.8.8.8")
 
